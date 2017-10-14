@@ -1,0 +1,34 @@
+ 
+
+<view wx:for="{{comments}}" wx:key="id" class="comment_view" wx:for-item="comment">
+  <view class="comment_uploader">{{comment.uploaderNickName}}</view >
+    <view class="comment_block">
+    <view wx:if="{{comment.content != ''}}" class="comment_content_parent">
+      <text class="comment_content">{{comment.content}}</text>
+    </view>
+    <view wx:if="{{comment.commentType == WECHATIMAGE}}" class="gallery">
+      <view class="item" wx:for="{{comment.source}}" wx:key="id" wx:for-item="image">
+        <image style="width: 220rpx; height: 220rpx" src=" {{image.path}}" bindtap="previewCurrentImage" 
+        data-index="{{index}}" data-source="{{comment.source}}" data-path="{{image.path}}" mode="aspectFill" />
+      </view>
+    </view>
+    <view wx:if="{{comment.commentType == WECHATVIDEO}}" >
+    <view class="comment_video_block" wx:for="{{comment.source}}" wx:key="id" wx:for-item="video">
+        <video id="{{'video' + video.id}}" data-id="{{ 'video' + video.id}}" bindplay="videoPlayControl" class="comment_video" src="{{video.path}}"  controls="true" ></video>
+      </view>
+    </view>
+    <view class="comment_time">
+      <label>{{comment.createDate}}</label>
+      <label wx:if="{{comment.uploader == uploader}}" bindtap="deleteComment" data-index="{{index}}" data-id="{{comment.id}}" class="comment_delete">删除</label>
+    </view >
+  </view>
+  <view class="comment_separate">
+  </view>
+</view>
+
+<view class="comment_foot_block">
+  <view class="comment_foot_block_view">
+    <text>正在拼命加载..</text>
+  </view>
+</view>
+ 

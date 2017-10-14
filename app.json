@@ -1,0 +1,21 @@
+{
+  "pages": [
+    "pages/Comment/Comment",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/Image/Image",
+    "pages/Video/Video",
+    "pages/Login/Login",
+    "pages/Zone/Zone",
+    "pages/Test/Test",
+    "pages/testImage/testImage",
+    "pages/MyComment/MyComment"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "智慧校园朋友圈",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  }
+}

@@ -1,0 +1,9 @@
+<view class="comment_head_block">
+  <image class="comment_head_bg_image" src="{{headBackgroundURL}}" mode="aspectFill" bindtap="changeBackground"/>
+  <image class="comment_head_user_info_camera" src="../../images/camera.png"  bindtap="addComment"/>
+  <image class="comment_head_user_info_image" src="{{userInfo.avatarUrl}}" bindtap="myComment"/>  
+  <label class="comment_head_user_info_text">{{uploaderNickName}}</label> 
+</view>
+
+<include src="../MyComment/MyComment.wxml"/>
+ 

@@ -1,0 +1,66 @@
+/*画廊*/
+.gallery {
+    /*margin-bottom: 100rpx;*/
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+/*每张图片所占容器*/
+.item {
+    position: relative;
+    margin: 5px;
+}
+
+/*删除按钮*/
+.delete {
+    position: absolute;
+    height: 20px;
+    bottom: 0;
+    width: 100%;
+    background: #ccc;
+    opacity: .8;
+}
+
+.delete image {
+    width: 20px;
+    height: 20px;
+}
+
+.comment_head_block{
+  margin-bottom: 100rpx;
+}
+
+.comment_head_bg_image {
+  margin-bottom: 0rpx;
+  width: 750rpx;
+  height: 463rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.comment_head_user_info_image {
+  margin-top: -120rpx;
+  margin-right: 20rpx;
+  width: 150rpx;
+  height: 150rpx;
+  float: right;
+  position: relative;
+  background-color:#F5F5F5;
+  z-index: 2;
+  border-style: solid;
+  border-color: #F5F5F5;
+  border-width: 5rpx;
+}
+
+.comment_head_user_info_text{
+  margin-top: -70rpx;
+  margin-right: 20rpx;
+  float: right;
+  color:#F5F5F5;
+  font-weight: bold;
+  font-family: 微软雅黑;
+  font-size: 32rpx;
+  position: relative;
+  z-index: 2;
+}

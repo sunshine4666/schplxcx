@@ -1,0 +1,41 @@
+<button bindtap="getWeChatJson">WeChatJson</button>
+<button bindtap="saveWeChatComment">saveWeChatComment</button>
+<button bindtap="addItem">动态添加数组</button>
+<button bindtap="showLoading">显示加载</button>
+<button bindtap="hideLoading">隐藏加载</button>
+<button bindtap="getJson">获取json</button>
+<view class="classname">列表显示</view>
+<view wx:for="{{array}}" wx:key="id">
+  {{index}}: {{item.id}}, {{item.message}}
+</view>
+<view class="classname">分组显示</view>
+<view wx:for="{{array}}" wx:key="id">
+ <view class="flex-wrp" style="flex-direction:row;">
+  <view class="flex-wrp" wx:for="{{item.class}}" wx:key="num">
+    <view  class="flex-item bc_green">{{index}}: {{item.num}}</view>
+  </view>
+  </view>
+</view>
+<view wx:for="{{images}}" wx:key="id">
+  <view>{{index}}: {{item.id}}, {{item.path}}</view >
+  <view>
+  <image style="width: 50px; height: 50px; background-color: #eeeeee;" mode="{{scaleToFill}}" src="{{item.path}}"></image>
+  </view>
+</view>
+
+
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view>1111</view>
+    <view>2222</view>
+    <view>3333</view>
+    <view>4444</view>
+    <view>4444</view>
+    <view>4444</view>
+    <view>4444</view>
+    <view>4444</view>
+    <view>4444</view>
+    <view>4444</view>
+    <view>4444</view>
+    <view>4444</view>
+    <view>2222</view>
+  </view>

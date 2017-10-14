@@ -1,0 +1,45 @@
+/* Image.wxss */
+.log-list {
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+}
+.log-item {
+  margin: 10rpx;
+}
+
+.indexButton{
+  margin:10px;
+}
+
+.loginText{
+  margin:20px;
+}
+
+.username{
+  background-color: lightgray;
+  border: 2px solid;
+  border-color: lightblue;
+  width:100%;
+  height: 60rpx;
+  margin-bottom: 20rpx;
+}
+.section{
+margin-top: 20rpx;
+padding:20rpx;
+}
+
+.textInputClass{
+  height:150px;
+  background-color:#F5F5F5;
+  width: 100%;
+}
+
+.comment_video_block{
+  position: relative;
+  padding: 20rpx;
+}
+.comment_video{
+  width:100%;
+  height:520rpx;
+}

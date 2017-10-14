@@ -1,0 +1,14 @@
+<view class="container">
+  <view  class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="usermotto">
+   <input class="username" placeholder="请输入用户名" bindinput="cmsUsernameInput" value="{{cmsUsername}}"/>
+   <input class="username" type="password" placeholder="请输入密码" bindinput="cmsPasswordInput" value="{{cmsPassword}}"/>
+  <button class="indexButton" bindtap="toLogin">登录</button>
+    <button class="indexButton" bindtap="refresh">刷新</button>
+  </view>
+  
+  <text class="loginText">{{result}}</text>
+</view>

@@ -1,0 +1,10 @@
+<template name="head">
+    <image src="../../images/comment_bg.png"></image>
+    <label>{{uploaderNickName}}</label>
+    <label>{{uploader}}</label>
+</template>
+
+<!--使用方法：模板的好处就是可以重新定义数据结构，而include等同于复制粘贴
+<import src="../template/head.wxml" />
+<template is="head" data="{{uploaderNickName: uploaderNickName,uploader: uploader}}"/>
+-->

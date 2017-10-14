@@ -1,0 +1,8 @@
+<button bindtap="getSource">刷新</button>
+<view wx:for="{{images}}" wx:key="id">
+  <view>#{{index}} ID:{{item.id}} 上传者:{{item.uploader}}</view >
+  <view>时间:{{item.createDate}}</view >
+  <view>
+  <image style="width: 200px; height: 200px; background-color: #eeeeee;" mode="{{scaleToFill}}" src="{{item.path}}"></image>
+  </view>
+</view>

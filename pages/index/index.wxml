@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <text class="cmsUser-name">{{cmsUser.name}}</text>
+    <text class="cmsUser-nickname">{{cmsUser.nickName}}</text>
+  </view>
+</view>
+
+<button class="indexButton" bindtap="toComment">我的发布</button>
+<button class="indexButton" bindtap="uploadImages">上传照片</button>
+<button class="indexButton" bindtap="uploadVideo">上传视频</button>
+<button class="indexButton" bindtap="logout">退出登录</button>

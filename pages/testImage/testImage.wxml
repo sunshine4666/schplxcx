@@ -1,0 +1,26 @@
+<view class="comment_head_block">
+    <image class="comment_head_bg_image" src="../../images/comment_bg.png"  mode="aspectFill"/>
+    <image class="comment_head_user_info_image" src="../../images/trash.png" />  
+    <label class="comment_head_user_info_text">段民族实验中学</label>
+</view>
+
+<!--<view class="gallery">
+    <view class="item" wx:for="{{images}}" wx:key="">
+        <image style="width: {{imageWidth}}px; height: {{imageWidth}}px" src=" {{item}}" bindtap="previewImage" mode="aspectFill" />
+        <view class="delete" bindtap="delete" data-index="{{index}}"><image style="left: {{imageWidth / 2 - 10}}px;" src="/images/trash.png" /></view>
+    </view>
+    <view class="item">
+        <image style="width: {{imageWidth}}px; height: {{imageWidth}}px" src="/images/add.png" class="button-upload" bindtap="chooseImage" />
+    </view>
+</view>
+<button type="primary" bindtap="submit">提交</button>-->
+
+<view style="position:relative;">
+<view style="position:absolute;z-index:1;background-color:red;height:200rpx" class="classnam"></view>
+<view style="position:absolute;z-index:2;background-color:green;height:200rpx" class="classnam"></view>
+</view>
+
+<view style="">
+<view style="background-color:red;height:200rpx" class="classnam"></view>
+<view style="background-color:green;height:200rpx;float:left;" class="classnam"></view>
+</view>

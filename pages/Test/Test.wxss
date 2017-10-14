@@ -1,0 +1,38 @@
+/**index.wxss**/
+.info{
+  font-size: 20px;
+  background-color: #ccc;
+  margin: 10px 0;
+}
+.section{
+margin-bottom: 50rpx;
+}
+.section__title{
+  font-size: 20px;
+  background-color: gold;
+}
+.flex-wrp{
+  display: flex;
+  width: 98%;
+  height: 350rpx;
+  border: 2px solid #000000;
+}
+.flex-item{
+  width: 200rpx;
+  height: 200rpx;
+  color: #ffffff;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bc_green{
+ 
+background-color: #00ff00;
+}
+.bc_red{
+background-color: #ff0000;
+}
+.bc_blue{
+background-color: #0000ff;
+}
