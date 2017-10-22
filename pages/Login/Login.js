@@ -14,6 +14,9 @@ Page({
       cmsUsername: app.globalData.cmsUsername,
       cmsPassword: app.globalData.cmsPassword
     })
+
+    console.log(that.data.cmsUsername);
+
     var isAutoLogin = Boolean(options.isAutoLogin)
     if (isAutoLogin){
       that.toLogin();
@@ -56,9 +59,11 @@ function login() {
   wx.showLoading({
     title: '正在登录...',
   })
+
+  console.log(app.globalData.cmsUsername);
   var page = util.getCurrentPage()
   wx.request({
-    url: app.globalData.serverAddr + 'admin/loginDialog.do',
+    url: app.globalData.serverAddr + 'admin/loginWebChat.do',
     data: {
       username: app.globalData.cmsUsername,
       password: app.globalData.cmsPassword
@@ -68,6 +73,7 @@ function login() {
       'content-type': 'application/x-www-form-urlencoded' //这是一个坑，否则无法获取cookie
     },
     success: function (res) {
+
       var data = res.data
       //打印数据
       page.setData({
@@ -117,23 +123,23 @@ function goBackToComment(){
   }
 }
 
-function getCmsUserInfo(){
+function getCmsUserInfo() {
+  console.log(app.globalData.cookie);
   wx.request({
     url: app.globalData.serverAddr + "/admin/schplWeChat/getCmsUserInfo.do",
-    data: {
-    },
-    method: 'GET',
+    method: 'POST',
     header: {
       'content-type': 'application/x-www-form-urlencoded',
       'Cookie': app.globalData.cookie
     },
     success: function (res) {
+      console.log(res);
       if (res.data.message == null) {
         util.showDialog("提示", "无法获取用户数据！")
         return
       }
       var data = JSON.parse(util.escape2Html(res.data.message))
-      if(data != null){
+      if (data != null) {
         app.globalData.cmsUser = data
         wx.setStorageSync('cmsUser', data)
       }
@@ -142,7 +148,7 @@ function getCmsUserInfo(){
     },
     fail: function (res) {
     },
-      complete: function (res) {
+    complete: function (res) {
     }
   })
 }

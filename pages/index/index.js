@@ -38,6 +38,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           app.globalData.cookie = null
+          wx.removeStorageSync("cookie");
           util.checkLoginForWeChat()
         }
       }

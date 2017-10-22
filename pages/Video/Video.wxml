@@ -1,4 +1,12 @@
 <view class="section">
+<picker bindchange="bindActivityPickerChange" value="{{index}}" range="{{activityArray}}">
+              <view class="picker">
+                {{activityArray[index]}}
+              </view>
+  </picker>
+</view>
+
+<view class="section">
   <textarea class="textInputClass" bindinput="commentInput"
     placeholder="说点什么吧.." value="{{commentAvatar}}" focus="{{focus}}" />
 </view>

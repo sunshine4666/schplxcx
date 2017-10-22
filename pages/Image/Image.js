@@ -12,7 +12,13 @@ Page({
     images: [],
     imageWidth: 160,
     comment: '',
-    commentAvatar: ''
+    commentAvatar: '',
+
+    activityArray: null,
+    activityIDArray: null,
+    index: 0,
+    cmsUser:null
+
   },
   chooseImages: function () {
     util.checkLoginForWeChat()
@@ -31,16 +37,47 @@ Page({
       }
     })
   },
+  bindActivityPickerChange: function (e) {
+    this.setData({
+      index: e.detail.value
+    });
+  },
   publish: function () {
+    
+    var that = this;
+
+    var roleid = that.data.cmsUser.roles;
+    if (roleid != "2" && roleid != "5") {
+      util.showDialog('错误', '您没有权限发布信息！')
+      return;
+    }
+
     var tempFilePaths = this.data.images
     if (util.isStringEmpty(this.data.comment) && (tempFilePaths == null || tempFilePaths.length == 0)) {
       util.showDialog('错误', '内容为空！')
       return
     }
+
+    if (this.data.index == 0) {
+    
+      util.showDialog('错误', '请选择活动页！')
+      return;
+
+    }
+
+
     util.messageToView(that, '执行结果：', false)
     wx.showLoading({
       title: '请稍后',
     })
+
+    var activity_id = null;
+    if (that.data.activityIDArray != null) {
+      activity_id = that.data.activityIDArray[that.data.index];
+    }
+
+    console.log(activity_id);
+
     wx.request({
       url: app.globalData.serverAddr + "/admin/schplWeChat/save.do",
       data: {
@@ -48,7 +85,8 @@ Page({
         uploaderName: app.globalData.cmsUser.name,
         uploaderNickName: app.globalData.cmsUser.nickName,
         commentType: app.globalData.WECHAT_IMAGE,
-        content: util.html2Escape(this.data.comment)
+        content: util.html2Escape(this.data.comment),
+        activityId: activity_id
       },
       method: 'POST',
       header: {
@@ -78,11 +116,58 @@ Page({
       comment: e.detail.value
     })
   },
+  loadActivePage: function () {
+
+    var that = this;
+    console.log(that.data.cmsUser);
+
+    var schoolid = that.data.cmsUser.schoolId;
+    if(schoolid==undefined){
+      util.showDialog('错误', '你没有权限发布信息！')
+    }
+
+    wx.request({
+      url: app.globalData.serverAddr + "/admin/schplActivePage/getActivePageBySchoolId.do",
+      data: {
+        SchoolId: schoolid
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': app.globalData.cookie
+      },
+      success: function (res) {
+        var data = JSON.parse(util.escape2Html(res.data.message))
+        console.log(data);
+        that.setData({
+          activityIDArray:data.ids,
+          activityArray:data.values
+        });
+
+      }
+ 
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    that = this
+    that = this;
+
+    that.setData({
+      cmsUser: app.globalData.cmsUser
+    });
+
+    var roleid = that.data.cmsUser.roles;
+    console.log(roleid);
+    if (roleid != "2" && roleid != "5") {
+      util.messageToView(that, '您没有权限发布信息！', false);
+      return;
+    }
+    
+    that.loadActivePage();
+
     util.messageToView(that, options.id, false)
   },
   delete: function (e) {
@@ -93,6 +178,9 @@ Page({
       images: images
     })
   },
+
+  
+
   previewImage: function (event) {
     // 预览图集
     var index = event.currentTarget.dataset.index
@@ -123,7 +211,7 @@ function upload(tempFilePaths, commentId) {
 
 function doUploadImage(tempFilePaths, commentId) {
   wx.uploadFile({
-    url: app.globalData.serverAddr + 'admin/schplActivity/doUpload.do',
+    url: app.globalData.serverAddr + 'admin/schplActivePage/doUpload.do',
     filePath: tempFilePaths.shift(),
     name: 'file',
     formData: {
@@ -131,13 +219,15 @@ function doUploadImage(tempFilePaths, commentId) {
       'uploader': app.globalData.cmsUser.id,
       'uploaderName': app.globalData.cmsUser.name,
       'attachType': app.globalData.WECHAT_IMAGE,
-      'activityId': commentId
+      'activityId': commentId,
+     
     },
     header: {
       'content-type': 'multipart/form-data',
       'Cookie': app.globalData.cookie
     },
     success: function (res) {
+      console.log(res);
       var data = JSON.parse(res.data)
       util.messageToView(that, '\nsuccess: ' + data.message, true)
       //算是递归调用吧
